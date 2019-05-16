@@ -3,21 +3,25 @@ const mongoose = require('mongoose')
 // Pull in Schema
 const Schema = mongoose.Schema
 
-// Create new Schema
+// Create new user Schema
 const userSchema = new Schema({
-    username = {
+    username: {
         type: String,
         required: true,
         unique: true,
         lowercase: true
     },
-    password = {
+    password: {
         type: String,
         required: true
     },
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    joined: {
+        type: Date,
+        default: Date.now
     }
 })
 
