@@ -22,10 +22,49 @@ BACKEND
 
 mongoose.connect
     - parses url into data that the server can use
-    - other two are to remove deprecation errors
 
 MODELS
     - DATA WE'RE GONNA USE
 THEN ROUTES
     - HOW WE'RE GONNA INTERACT WITH THAT DATA
     
+
+NOTES:
+    *** ADD .env to GITIGNORE
+
+
+Status CODES:
+    - 200's SUCCESSFUL requests
+    - 400's AUTHENTICATION errors
+    - 500's SERVER errors 
+
+MIDDLEWARE:
+Functions that execute during the lifecycle of a request to the Express server.
+!!! Most things on the server are considered middleware
+(they only fire on a certain request)
+
+SERVER:
+const app = express()
+app.SOMETHING() -> app.use(), app.listen() -> SERVER
+
+
+USERS:
+    UN: kyle_gubbins
+    PW: niceguy1
+
+{
+    "user": {
+        "isAdmin": false,
+        "_id": "5cddcca1cd84c594af35f18b",
+        "username": "kyle_gubbins",
+        "password": "niceguy1",
+        "joined": "2019-05-16T20:48:33.694Z",
+        "__v": 0
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjpmYWxzZSwiX2lkIjoiNWNkZGNjYTFjZDg0YzU5NGFmMzVmMThiIiwidXNlcm5hbWUiOiJreWxlX2d1YmJpbnMiLCJwYXNzd29yZCI6Im5pY2VndXkxIiwiam9pbmVkIjoiMjAxOS0wNS0xNlQyMDo0ODozMy42OTRaIiwiX192IjowLCJpYXQiOjE1NTgwMzk3MTN9.OQ1n-AsP3h2rFUYqOCOZ_898ijA4m7_JdJv8r6olC4w"
+}
+
+NOTE: When sending a body via an HTTP request, we have to specify what
+kind of content we are sending (Content-Type -> application/json) in the
+HEADER. By default, axios sets this up automatically on the frontend
+as application/json
