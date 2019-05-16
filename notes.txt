@@ -1,0 +1,31 @@
+FRONTEND
+    - TWO PAGES
+        - LOGIN
+            - Login Form
+        - USER PAGES
+            PER SYMBOL
+                - SYMBOL / PRICE
+                - CHART
+
+BACKEND
+    - ONE ROUTE?
+    - DB
+        - MODELS
+            - Store Users
+            - Store 5 yrs
+            - Auto include new info
+            - Auto request new close, daily
+                - redo EMA's
+            
+    - USER AUTH
+    
+
+mongoose.connect
+    - parses url into data that the server can use
+    - other two are to remove deprecation errors
+
+MODELS
+    - DATA WE'RE GONNA USE
+THEN ROUTES
+    - HOW WE'RE GONNA INTERACT WITH THAT DATA
+    
