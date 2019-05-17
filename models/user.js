@@ -25,4 +25,6 @@ const userSchema = new Schema({
     }
 })
 
+// mongoose.model takes two arguments here, the name that
+// we are giving our schema, and the schema itself
 module.exports = mongoose.model('User', userSchema)

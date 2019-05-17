@@ -6,9 +6,9 @@ const jwt = require('jsonwebtoken')
 
 
 // Signup
-    // Check if the user already exists
-        // if yes, throw error
-        // if no, create new user, save in DB, and send back token
+// Check if the user already exists
+    // if yes, throw error
+    // if no, create new user, save in DB, and send back token
 // .post takes two arguments here: 
 // 1st.
 // POST route
@@ -18,19 +18,19 @@ const jwt = require('jsonwebtoken')
 // not end the request-response cycle, you MUST call next or the request
 // will be left hanging at the current middleware)
 authRouter.post("/signup", (req, res, next) => {
-    // .findOne is a mongoose query method to check if user already exists
-    // and takes two arguments
-    // 1st.
-    // check if there is an existing User object in our database
-    // with a username that is equal to the username provided in the
-    // request (toLowerCase String method to resolve any casing issues)
-    // 2nd. 
-    // if there's an error, handle error
-    // check for user
-        // if user, 
-            // .findOne will send back User object
-        // if not,
-            // .findOne will send back "null"
+// .findOne is a mongoose query method to check if user already exists
+// and takes two arguments
+// 1st.
+// check if there is an existing User object in our database
+// with a username that is equal to the username provided in the
+// request (toLowerCase String method to resolve any casing issues)
+// 2nd. 
+// if there's an error, handle error
+// check for user
+    // if user, 
+        // .findOne will send back User object
+    // if not,
+        // .findOne will send back "null"
     User.findOne({ username: req.body.username.toLowerCase()}, (err, user) => {
         if (err) {
             res.status(500)
@@ -74,6 +74,30 @@ authRouter.post("/signup", (req, res, next) => {
                     .status(201)
                     .send({user: savedUser.toObject(), token})
         })
+    })
+})
+
+//LOGIN
+// Check if user exists in DB
+    // if so, does password match user's password
+        // Create token, send user object and token to front end
+authRouter.post("/login", (req, res, next) => {
+    User.findOne({ username: req.body.username.toLowerCase()}, (err, user) => {
+        if (err) {
+            res.status(500)
+            return next(err)
+        }
+        // if user does not exist in DB or if the password is wrong
+        if (!user || user.password !== req.body.password) {
+            res.status(500)
+            return next(new Error("Username or password are incorrect."))
+        }
+        // if username and password exist and match, create token and send back
+        // user object and token
+        const token = jwt.sign(user.toObject(), process.env.SECRET)
+        return res
+            .status(200)
+            .send({user: user.toObject(), token})
     })
 })
 
