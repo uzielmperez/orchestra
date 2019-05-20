@@ -46,7 +46,7 @@ mongoose.connect(
 // "/auth" will route to authRouter.js (signup is /auth/signup)
 app.use("/auth", require('./routes/authRouter.js'))
 // the convention for routes that use expressJwt is "/api"
-// "/api" uses express-jwt to check for tokens
+// "/api" uses express-jwt to check for tokens t
 // any request that begins with "/api" will go throught expressJwt first
 // if it finds the token AND it matches, it will decode
 // the given token and creates a req.user object
