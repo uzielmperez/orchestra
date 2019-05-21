@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken')
 
 
 // Signup
+// NOTE: When sending a body (POST), you have to specify a header (IN POSTMAN, axios 
+// will do this by default)
 // Check if the user already exists
     // if yes, throw error
     // if no, create new user, save in DB, and send back token
@@ -31,6 +33,7 @@ authRouter.post("/signup", (req, res, next) => {
         // .findOne will send back User object
     // if not,
         // .findOne will send back "null"
+    // .find will return an EMPTY ARRAY if it doesn't find anything, .findOne will return "null"
     User.findOne({ username: req.body.username.toLowerCase()}, (err, user) => {
         if (err) {
             res.status(500)
