@@ -15,10 +15,12 @@ const blurbSchema = new Schema({
         required: true
     },
     price: {
-        type: String,
-        required: false
+        type: String
     },
     image: {
+        type: String,
+    },
+    location: {
         type: String,
         required: true
     },
