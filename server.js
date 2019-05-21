@@ -43,6 +43,8 @@ mongoose.connect(
 )
 
 // Routes
+// public, used to get all blurbs (will later be used to get blurbs by location)
+app.use("/blurbs", require('./routes/blurbRouter.js'))
 // "/auth" will route to authRouter.js (signup is /auth/signup)
 app.use("/auth", require('./routes/authRouter.js'))
 // the convention for routes that use expressJwt is "/api"
@@ -55,8 +57,8 @@ app.use("/auth", require('./routes/authRouter.js'))
 // with the request (similar to "Content-Type" -> "application/json")
 // we use "Authorization" -> "Bearer TOKEN"
 app.use("/api", expressJwt({ secret: process.env.SECRET}))
-app.use("/api/blurb", require('./routes/blurbRouter.js'))
-// app.use("/blurbs")
+app.use("/api/post", require('./routes/postRouter.js'))
+
 
 // Error Handler (will forward errors here via "next")
     // when an app.use is set up with all four of these parameters, EXPRESS
