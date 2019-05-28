@@ -12,7 +12,6 @@ const blurbSchema = new Schema({
     },
     phoneNumber: {
         type: String,
-        required: true
     },
     price: {
         type: String
@@ -22,7 +21,14 @@ const blurbSchema = new Schema({
     },
     location: {
         type: String,
-        required: true
+    },
+    type: {
+        type: String,
+        enum: ["Sell", "Services", "Hiring"]  
+    },
+    created: {
+        type: Date,
+        default: Date.now
     },
     user: {
         type: Schema.Types.ObjectId,
