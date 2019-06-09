@@ -66,6 +66,8 @@ export default class Form extends Component {
 
     render() {
         // render props are being passed as an object here :)
+        // provide the props specified here to whatever we are rendering (likely
+        // another component)
         return this.props.render({ 
             inputs: this.state.inputs,
             handleChange: this.handleChange,
