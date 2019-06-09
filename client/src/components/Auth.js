@@ -22,7 +22,7 @@ const Auth = (props) => {
             !on?
                 // we're using fragment tags to allow the containing div to reach
                 // the fragmented Forms for styling purposes
-                // Note: If mapping through Fragments, import Frament (like Component) 
+                // Note: If mapping through Fragments, import Fragment (like Component) 
                 // from react to allow a "key" to be given to each fragment -> <Fragment key={i}>
                 // There are two Forms here (which we're toggling between), one for
                 // signup, and one for login.
