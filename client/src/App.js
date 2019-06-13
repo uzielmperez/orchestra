@@ -9,7 +9,9 @@ import AddBlurb from './components/AddBlurb'
 // and the user's login state / token info is managed by the
 // UserProvider component
 import { withUser } from './context/UserProvider'
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar'
+// protectedroute contains the route/token/authorization logic
+import ProtectedRoute from './shared/ProtectedRoute'
 import "./App.css"
 
 
@@ -33,7 +35,15 @@ const App = (props) => {
                     <Route path="/auth" render={routerProps => !token? <Auth {...routerProps} /> : <Redirect to="/addblurb"/>} />
                     {/* path to post new blurbs -> authentication required -> if no token,
                     redirect to the login page */}
-                    <Route path="/addblurb" render={routerProps => !token? <Redirect to="/auth"/> : <AddBlurb {...routerProps} username={username}/> } />
+                    {/* PREVIOUSLY Route (commented out below), now ProtectedRoute */}
+                    {/* <Route path="/addblurb" render={routerProps => !token? <Redirect to="/auth"/> : <AddBlurb {...routerProps} username={username}/> } /> */}
+                    <ProtectedRoute 
+                    // route token/auth/component logic abstracted away to ProtectedRoute component
+                        path="/addblurb"    
+                        token={token}
+                        component={AddBlurb}
+                        redirectTo="/auth"
+                    />
                 </Switch>
             </div>
         </div>
@@ -41,3 +51,8 @@ const App = (props) => {
 }
 
 export default withUser(App)
+
+// && can be used to create single-sided ternaries
+// true && thisWillHappen
+    // thisWillHappen only if the first thing evaluates to true (condition)
+        // no need to specify a null value
