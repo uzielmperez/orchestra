@@ -77,3 +77,14 @@ REACT_APP_APIKEY=“alskfdjasdlj”
 
 const cors =  require(‘cors’)
 app.use(cors())
+
+
+// TODO
+// Auto-delete posts within 24 hrs
+// SMS Gateway for AUTHENTICATION
+// Figure out images (both landing, and uploading)
+// improve appearance of post PAGES
+// Figure out location (require)
+// web-scraper (craigslist?)
+
+
